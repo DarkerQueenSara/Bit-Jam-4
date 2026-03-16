@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float bpm = 120.0f; //shots per minute
     private float shootingTimer = 0.0f;
     //
-    [SerializeField] private int playerScore = 0;
-    [SerializeField] private int playerHp = 5;
+    public int playerScore = 0;
+     public int playerHp = 5;
 
     private LayerMask layerMask;
     
@@ -71,7 +72,8 @@ public class Player : MonoBehaviour
 
     private void GameOver()
     {
-        print("GAME OVER");
+        GameManager.Instance.lastScore = playerScore;
+        SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public float GetScore()
