@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float projectileSpeed = 10.0f;
     //Enemy behavior type
     enum EnemyType { CHASE, SHOOT, BOTH};
-    private EnemyType enemyType = EnemyType.CHASE;
+    [SerializeField] private EnemyType enemyType = EnemyType.CHASE;
 
     private Rigidbody rb;
 
