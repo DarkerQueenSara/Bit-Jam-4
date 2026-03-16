@@ -1,14 +1,13 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
-    private Player player;
     [SerializeField] private float lifeTime = 3.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        print("PLAYER PROJECTILE, AAAAAAAAA");
+        print("ENEMY PROJECTILE AAAAAAAAAAAAA");
         Destroy(this.gameObject, lifeTime);
     }
 
@@ -20,20 +19,11 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            print("ENEMY, AAAAAAAAAAAAA");
+            print("I HIT THE PLAYER HAHAHAAAAAAAAAA");
             Destroy(this.gameObject);
-            Destroy(collision.gameObject);
-            if (player != null)
-            {
-                player.AddScore(50);
-            }
+            collision.gameObject.GetComponent<Player>().Hit(); //hit player
         }
-    }
-
-    public void SetPlayer(Player player)
-    {
-        this.player = player;
     }
 }

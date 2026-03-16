@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Enemy enemy;
+    [SerializeField] private GameObject enemy;
 
     [SerializeField] private float enemySpawnRate = 4.0f; //in secs
     private float enemySpawnTimer = 0.0f;
@@ -32,8 +32,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Enemy spawnedEnemy = Instantiate(enemy);
-        spawnedEnemy.transform.position = RandomSpawnPositionVector();
+        Vector3 spawnPosition = RandomSpawnPositionVector();
+        GameObject spawnedEnemy = Instantiate(enemy);
+        spawnedEnemy.transform.position = spawnPosition;
     }
 
     private Vector3 RandomSpawnPositionVector()
