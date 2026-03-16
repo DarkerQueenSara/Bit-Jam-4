@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Spline/Scenes/SampleScene.unity
     guid: 33f63dd59bccc344ba806f78a5f0bbf9
+  - enabled: 1
+    path: Assets/Scenes/ScoreScreen.unity
+    guid: c8f528a1ae23b4c4e87737d4ad3d2928
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

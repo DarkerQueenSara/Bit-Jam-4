@@ -11,16 +11,11 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        enemySpawnTimer = enemySpawnRate;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    private void FixedUpdate()
+    private void Update()
     {
         enemySpawnTimer += Time.deltaTime;
         if (enemySpawnTimer >= enemySpawnRate)
@@ -32,9 +27,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Vector3 spawnPosition = RandomSpawnPositionVector();
-        GameObject spawnedEnemy = Instantiate(enemy);
-        spawnedEnemy.transform.position = spawnPosition;
+        Vector3 newPos = RandomSpawnPositionVector();
+        GameObject spawnedEnemy = Instantiate(enemy, newPos, Quaternion.identity);
+        Debug.Log("Spawned at " + spawnedEnemy.transform.position);
     }
 
     private Vector3 RandomSpawnPositionVector()

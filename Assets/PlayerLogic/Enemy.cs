@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [SerializeField] private GameObject player;
 
     [SerializeField] private GameObject enemyProjectileGO;
     [SerializeField] private GameObject enemyProjectileGOStartPos;
@@ -17,24 +17,28 @@ public class Enemy : MonoBehaviour
     enum EnemyType { CHASE, SHOOT, BOTH};
     private EnemyType enemyType = EnemyType.CHASE;
 
+    private Rigidbody rb;
 
+    private void Awake()
+    {
+        Debug.Log("Pos is " + transform.position + " at awake");
+        rb = GetComponent<Rigidbody>();
+        player = GameObject.FindWithTag("Player");
+    }
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log("Pos is " + transform.position + " at start");
         DefineRandomBehavior();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void FixedUpdate()
     {
+        Debug.Log("I'm at" + transform.position + " or rb wise " + rb.transform.position);
         if (player != null)
         {
-            transform.LookAt(player.transform);
+            //transform.LookAt(player.transform);
         }
 
         switch (enemyType)
@@ -89,7 +93,9 @@ public class Enemy : MonoBehaviour
     {
         if (player != null)
         {
-            transform.position += moveSpeed * Time.deltaTime * transform.forward;
+            rb.MovePosition(player.transform.position * Time.fixedDeltaTime * moveSpeed);
+            Debug.Log("Player pos is " + player.transform.position + " new pos is " +
+                      player.transform.position * Time.fixedDeltaTime * moveSpeed);
         }
     }
 

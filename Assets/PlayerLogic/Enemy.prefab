@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3575079623768596767}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.17, y: 0.68254, z: -4.09}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -107,7 +107,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -129,12 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9472e0ca56c90478056b47961ed470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  player: {fileID: 3871817501574519131, guid: bd1fb2e4e840cde4e9234ea0d678f943, type: 3}
+  player: {fileID: 0}
   enemyProjectileGO: {fileID: 8597201142982823597, guid: edd53e67eea615c4d969a63f7feabb6f, type: 3}
   enemyProjectileGOStartPos: {fileID: 3579634882533923424}
-  moveSpeed: 3
-  rateOfFire: 3
-  projectileSpeed: 10
+  moveSpeed: 40
+  rateOfFire: 2
+  projectileSpeed: 30
 --- !u!54 &-4236149674418379502
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,13 +154,13 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &3579634882533923424
 GameObject:

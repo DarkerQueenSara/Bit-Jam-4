@@ -18,9 +18,12 @@ public class Player : MonoBehaviour
     [SerializeField] private int playerScore = 0;
     [SerializeField] private int playerHp = 5;
 
+    private LayerMask layerMask;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        layerMask = LayerMask.GetMask("Enemy");
         shoot = InputSystem.actions.FindAction("Attack");
     }
 
@@ -47,10 +50,27 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject projectile = Instantiate(projectileGO, projectileGOStartPos.transform.position, projectileGOStartPos.transform.rotation);
+        
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.SphereCast(transform.position, 1.5f, playerCamera.transform.forward, out hit, Mathf.Infinity, layerMask))
+
+        {
+            Debug.DrawRay(transform.position, playerCamera.transform.forward * hit.distance, Color.yellow);
+            Debug.Log("Did Hit");
+            Destroy(hit.collider.gameObject);
+            AddScore(50);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, playerCamera.transform.forward * 1000, Color.white);
+            Debug.Log("Did not Hit");
+        }
+        
+        /*GameObject projectile = Instantiate(projectileGO, projectileGOStartPos.transform.position, projectileGOStartPos.transform.rotation);
         projectile.GetComponent<Projectile>().SetPlayer(this);
         Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
-        projectileRB.linearVelocity = playerCamera.transform.forward * projectileSpeed;
+        projectileRB.linearVelocity = playerCamera.transform.forward * projectileSpeed;*/
     }
 
     public void Hit()
