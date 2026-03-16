@@ -55,7 +55,17 @@ public class Spline : MonoBehaviour
         float total = fac * nodes.Length;
         int section = Mathf.FloorToInt(total);
         float factor = total - section;
-        return Quaternion.LookRotation(Tangent(nodes[section], nodes[(section == nodes.Length - 1) ? 0 : section + 1], factor), Vector3.up);
+
+        Node nodeA = nodes[section];
+        Node nodeB = nodes[(section == nodes.Length - 1) ? 0 : section + 1];
+
+        Vector3 upA = (nodeA.up.position - nodeA.transform.position).normalized;
+        Vector3 upB = (nodeB.up.position - nodeB.transform.position).normalized;
+        Vector3 upDir = Vector3.Slerp(upA, upB, factor);
+
+        Vector3 tangent = Tangent(nodeA, nodeB, factor);
+
+        return Quaternion.LookRotation(tangent, upDir);
     }
 
     Vector3 Tangent(Node A, Node B, float factor)
@@ -105,7 +115,18 @@ public class Spline : MonoBehaviour
                 forward = ((f1 + f2) * 0.5f).normalized;
             }
 
-            Vector3 left = Vector3.Cross(Vector3.up, forward).normalized;
+            // Determine which segment this point belongs to and interpolate the up direction
+            int nodeIndex = i / resolution;
+            float localT = (i % resolution) / (float)(resolution - 1);
+
+            Node nodeA = nodes[nodeIndex % nodes.Length];
+            Node nodeB = nodes[(nodeIndex + 1) % nodes.Length];
+
+            Vector3 upA = (nodeA.up.position - nodeA.transform.position).normalized;
+            Vector3 upB = (nodeB.up.position - nodeB.transform.position).normalized;
+            Vector3 upDir = Vector3.Slerp(upA, upB, localT).normalized;
+
+            Vector3 left = Vector3.Cross(upDir, forward).normalized;
 
             verts[i * 2 + 0] = mapping[i] + left * (roadWidth * 0.5f);
             verts[i * 2 + 1] = mapping[i] - left * (roadWidth * 0.5f);
@@ -123,7 +144,6 @@ public class Spline : MonoBehaviour
             int c = a + 2;
             int d = a + 3;
 
-            // Correct winding order (normals up)
             tris[index++] = a;
             tris[index++] = b;
             tris[index++] = c;

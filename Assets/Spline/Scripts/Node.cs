@@ -3,12 +3,12 @@ using UnityEngine;
 [ExecuteAlways]
 public class Node : MonoBehaviour
 {
-    public Transform childA, childB;
+    public Transform childA, childB, up;
     Vector3 lastA, lastB;
 
     void Update()
     {
-        if (childA == null || childB == null)
+        if (childA == null || childB == null || up == null)
             return;
 
         if (childA.localPosition != lastA)
@@ -26,6 +26,8 @@ public class Node : MonoBehaviour
             lastA = childA.localPosition;
             return;
         }
+
+        up.rotation = Quaternion.LookRotation(transform.forward, up.localPosition);
     }
 
     void OnValidate()
