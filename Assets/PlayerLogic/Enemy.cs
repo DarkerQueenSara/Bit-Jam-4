@@ -44,20 +44,21 @@ public class Enemy : MonoBehaviour
                 ChasePlayer();
                 break;
             case EnemyType.SHOOT:
-                print("SHOOT");
+                
                 shootingTimer += Time.deltaTime;
                 if (shootingTimer > rateOfFire)
                 {
                     ShootPlayer();
+                    print("SHOOT PLAYER");
                     shootingTimer = 0.0f;
                 }
                 break;
             case EnemyType.BOTH:
-                print("SHOOT AND CHASE");
                 shootingTimer += Time.deltaTime;
                 if (shootingTimer > rateOfFire)
                 {
                     ShootPlayer();
+                    print("SHOOT AND CHASE");
                     shootingTimer = 0.0f;
                 }
                 ChasePlayer();
@@ -67,9 +68,21 @@ public class Enemy : MonoBehaviour
 
     private void DefineRandomBehavior()
     {
-        int random_behavior = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length - 1);
+        int random_behavior = UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length);
         enemyType = (EnemyType)random_behavior;
         print("MY TYPE IS " + enemyType);
+        switch (enemyType)
+        {
+            case EnemyType.CHASE:
+                this.name = "ChasingEnemy";
+                break;
+            case EnemyType.SHOOT:
+                this.name = "ShootingEnemy";
+                break;
+            case EnemyType.BOTH:
+                this.name = "ShootAndChaseEnemy";
+                break;
+        }
     }
 
     private void ChasePlayer()
