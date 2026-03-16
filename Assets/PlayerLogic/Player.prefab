@@ -251,7 +251,7 @@ MonoBehaviour:
   projectileGOStartPos: {fileID: 1838867056492008727}
   playerCamera: {fileID: 7339292868095969823}
   rateOfFire: 2
-  projectileSpeed: 10
+  projectileSpeed: 50
   playerScore: 0
   playerHp: 5
 --- !u!1 &3819820443528595015

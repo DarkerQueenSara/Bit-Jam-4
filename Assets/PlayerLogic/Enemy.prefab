@@ -133,8 +133,8 @@ MonoBehaviour:
   enemyProjectileGO: {fileID: 8597201142982823597, guid: edd53e67eea615c4d969a63f7feabb6f, type: 3}
   enemyProjectileGOStartPos: {fileID: 3579634882533923424}
   moveSpeed: 3
-  rateOfFire: 2
-  projectileSpeed: 1
+  rateOfFire: 3
+  projectileSpeed: 10
 --- !u!54 &-4236149674418379502
 Rigidbody:
   m_ObjectHideFlags: 0

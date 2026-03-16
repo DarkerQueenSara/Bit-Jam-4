@@ -10,9 +10,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject enemyProjectileGOStartPos;
     //
     [SerializeField] private float moveSpeed = 3.0f;
-    [SerializeField] private float rateOfFire = 2.0f;
+    [SerializeField] private float rateOfFire = 3.0f;
     private float shootingTimer = 0.0f;
-    [SerializeField] private float projectileSpeed = 1.0f;
+    [SerializeField] private float projectileSpeed = 10.0f;
     //Enemy behavior type
     enum EnemyType { CHASE, SHOOT, BOTH};
     private EnemyType enemyType = EnemyType.CHASE;
