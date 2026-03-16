@@ -9,11 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject projectileGO;
     [SerializeField] private GameObject projectileGOStartPos;
     [SerializeField] private Camera playerCamera;
+    //
     private float isShooting = 0;
     [SerializeField] private float rateOfFire = 2.0f;
     private float shootingTimer = 2.0f;
     [SerializeField] private float projectileSpeed = 10.0f;
+    //
     [SerializeField] private int playerScore = 0;
+    [SerializeField] private int playerHp = 5;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,7 +27,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
     }
 
     private void FixedUpdate()
@@ -46,8 +48,34 @@ public class Player : MonoBehaviour
     private void Shoot()
     {
         GameObject projectile = Instantiate(projectileGO, projectileGOStartPos.transform.position, projectileGOStartPos.transform.rotation);
-        Rigidbody projectileRB = projectile.gameObject.GetComponent<Rigidbody>();
+        projectile.GetComponent<Projectile>().SetPlayer(this);
+        Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
         projectileRB.linearVelocity = playerCamera.transform.forward * projectileSpeed;
+    }
 
+    public void Hit()
+    {
+        playerHp -= 1;
+        print("OWIE!! PLAYER HP: " + playerHp);
+        if (playerHp <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        print("GAME OVER I DEAD LMAO KEKW");
+    }
+
+    public float GetScore()
+    {
+        return playerScore;
+    }
+
+    public void AddScore(int newScore)
+    {
+        playerScore += newScore;
+        print("NEW SCORE: " + newScore);
     }
 }
