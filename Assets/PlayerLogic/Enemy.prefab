@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4902530161995043659}
   - component: {fileID: 5615846435125611995}
   - component: {fileID: -4236149674418379502}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -129,12 +129,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9472e0ca56c90478056b47961ed470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  player: {fileID: 0}
+  player: {fileID: 3770835279992080199, guid: bd1fb2e4e840cde4e9234ea0d678f943, type: 3}
   enemyProjectileGO: {fileID: 8597201142982823597, guid: edd53e67eea615c4d969a63f7feabb6f, type: 3}
   enemyProjectileGOStartPos: {fileID: 3579634882533923424}
   moveSpeed: 40
   rateOfFire: 2
   projectileSpeed: 30
+  enemyType: 1
 --- !u!54 &-4236149674418379502
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5218222109226234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: projectileReferencePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

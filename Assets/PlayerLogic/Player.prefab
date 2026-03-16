@@ -247,11 +247,8 @@ MonoBehaviour:
     m_Interactions: Hold,Press
     m_SingletonActionBindings: []
     m_Flags: 0
-  projectileGO: {fileID: 8859068064802648803, guid: 9c5c96844cc348242bf2f55c289ea8e1, type: 3}
-  projectileGOStartPos: {fileID: 1838867056492008727}
   playerCamera: {fileID: 7339292868095969823}
-  rateOfFire: 2
-  projectileSpeed: 50
+  bpm: 120
   playerScore: 0
   playerHp: 5
 --- !u!1 &3819820443528595015

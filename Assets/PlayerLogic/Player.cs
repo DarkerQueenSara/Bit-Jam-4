@@ -5,15 +5,11 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public InputAction shoot;
-
-    [SerializeField] private GameObject projectileGO;
-    [SerializeField] private GameObject projectileGOStartPos;
     [SerializeField] private Camera playerCamera;
     //
     private float isShooting = 0;
-    [SerializeField] private float rateOfFire = 2.0f;
-    private float shootingTimer = 2.0f;
-    [SerializeField] private float projectileSpeed = 10.0f;
+    [SerializeField] private float bpm = 120.0f; //shots per minute
+    private float shootingTimer = 0.0f;
     //
     [SerializeField] private int playerScore = 0;
     [SerializeField] private int playerHp = 5;
@@ -34,14 +30,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        shootingTimer += Time.deltaTime;
-        if (shootingTimer >= rateOfFire)
-        {
-            shootingTimer = rateOfFire + 0.5f;
-        }
+        shootingTimer += (Time.fixedDeltaTime);
 
         isShooting = shoot.ReadValue<float>();
-        if (isShooting != 0 && shootingTimer >= rateOfFire)
+        if (isShooting != 0 && shootingTimer >= 60.0f / bpm)
         {
             Shoot();
             shootingTimer = 0.0f;
@@ -50,14 +42,13 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
         if (Physics.SphereCast(transform.position, 1.5f, playerCamera.transform.forward, out hit, Mathf.Infinity, layerMask))
 
         {
             Debug.DrawRay(transform.position, playerCamera.transform.forward * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
+            Debug.Log("HIT AN ENEMY");
             Destroy(hit.collider.gameObject);
             AddScore(50);
         }
@@ -66,17 +57,12 @@ public class Player : MonoBehaviour
             Debug.DrawRay(transform.position, playerCamera.transform.forward * 1000, Color.white);
             Debug.Log("Did not Hit");
         }
-        
-        /*GameObject projectile = Instantiate(projectileGO, projectileGOStartPos.transform.position, projectileGOStartPos.transform.rotation);
-        projectile.GetComponent<Projectile>().SetPlayer(this);
-        Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
-        projectileRB.linearVelocity = playerCamera.transform.forward * projectileSpeed;*/
     }
 
     public void Hit()
     {
         playerHp -= 1;
-        print("OWIE!! PLAYER HP: " + playerHp);
+        print("PLAYER GOT HIT! PLAYER HP: " + playerHp);
         if (playerHp <= 0)
         {
             GameOver();
@@ -85,7 +71,7 @@ public class Player : MonoBehaviour
 
     private void GameOver()
     {
-        print("GAME OVER I DEAD LMAO KEKW");
+        print("GAME OVER");
     }
 
     public float GetScore()
@@ -96,6 +82,6 @@ public class Player : MonoBehaviour
     public void AddScore(int newScore)
     {
         playerScore += newScore;
-        print("NEW SCORE: " + newScore);
+        print("ADDED SCORE: " + newScore + ". NEW SCORE: " + playerScore);
     }
 }
