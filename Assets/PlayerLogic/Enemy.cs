@@ -114,8 +114,8 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             print("I, AN ENEMY, HAVE JUST TACKLED THE PLAYER");
-            Destroy(this.gameObject);
             collision.gameObject.GetComponent<Player>().Hit();
+            Destroy(this.gameObject);
         }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2484148619577128503}
   - component: {fileID: 9105826064246490064}
   - component: {fileID: 6933014028523785209}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootReferencePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 6178357746211912116}
   - component: {fileID: 4772685769032686372}
   - component: {fileID: 3871817501574519131}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6502932586699144198}
   - component: {fileID: 7814430315122668303}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BehindPlayerSpawnerPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 9141920561782201789}
   - component: {fileID: 1697113563075678423}
   - component: {fileID: 3875465629149084549}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
