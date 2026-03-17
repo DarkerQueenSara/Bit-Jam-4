@@ -1,3 +1,4 @@
+using System.Security.AccessControl;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
     //Enemy behavior type
     enum EnemyType { CHASE, SHOOT, BOTH};
     [SerializeField] private EnemyType enemyType = EnemyType.CHASE;
+    [SerializeField] int frame;
+    [SerializeField] private Renderer rend;
+
+    float FRAMESIZE = 1/8;
 
     private Rigidbody rb;
 
@@ -87,6 +91,10 @@ public class Enemy : MonoBehaviour
                 this.name = "ShootAndChaseEnemy";
                 break;
         }
+    }
+
+    private void Update() {
+        rend.material.SetFloat("_Frame", FRAMESIZE * frame);
     }
 
     private void ChasePlayer()
