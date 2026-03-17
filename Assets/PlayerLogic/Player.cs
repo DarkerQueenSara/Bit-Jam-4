@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -48,14 +47,12 @@ public class Player : MonoBehaviour
         if (Physics.SphereCast(transform.position, 1.5f, playerCamera.transform.forward, out hit, Mathf.Infinity, layerMask))
 
         {
-            Debug.DrawRay(transform.position, playerCamera.transform.forward * hit.distance, Color.yellow);
             Debug.Log("HIT AN ENEMY");
             Destroy(hit.collider.gameObject);
             AddScore(50);
         }
         else
         {
-            Debug.DrawRay(transform.position, playerCamera.transform.forward * 1000, Color.white);
             Debug.Log("Did not Hit");
         }
     }
